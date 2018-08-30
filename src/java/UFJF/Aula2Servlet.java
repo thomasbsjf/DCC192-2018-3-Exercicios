@@ -27,7 +27,8 @@ public class Aula2Servlet extends HttpServlet {
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
         
-        try (PrintWriter out = response.getWriter()) {
+        if(usu.equals(usuario) && psw.equals(senha)){
+                    try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -35,6 +36,31 @@ public class Aula2Servlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AulaServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+        }else{
+                    try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AulaServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AulaServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+        }
+        
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AulaServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+
             out.println("</body>");
             out.println("</html>");
         }
