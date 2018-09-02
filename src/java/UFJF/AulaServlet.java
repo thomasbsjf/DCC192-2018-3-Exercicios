@@ -34,7 +34,7 @@ public class AulaServlet extends HttpServlet {
 
             if (usu.equals(usuario)) {
                 if (psw.equals(senha)) {
-                    response.sendRedirect("menu.html");
+                    
                 }
             } else {
                 out.println("<!DOCTYPE html>");
