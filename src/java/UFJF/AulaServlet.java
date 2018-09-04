@@ -7,6 +7,11 @@ package UFJF;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,11 +23,6 @@ public class AulaServlet extends HttpServlet {
 
     String usuario, senha;
 
-    public void init() {
-        usuario = getInitParameter("usuario");
-        senha = getInitParameter("senha");
-    }
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -30,25 +30,60 @@ public class AulaServlet extends HttpServlet {
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
-        try (PrintWriter out = response.getWriter()) {
-
-            if (usu.equals(usuario)) {
-                if (psw.equals(senha)) {
-                    
-                }
-            } else {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Exercícios Aula 2 - DCC192</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Usuário ou senha Inválido</h1>");
-                out.println("</body>");
-                out.println("</html>");
-
+        // Pega senha do danco de dados
+        String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+        String DB_URL = "jdbc:derby://localhost:1527/usuario";
+        // Database credentials
+        Connection conn = null;
+        Statement stmt = null;
+        String resp = null;
+        // Set response content type
+        try {
+            // Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+            // Open a connection
+            conn = new ConnectionFactory().getConnection();
+            // Execute SQL query
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT usuario,senha FROM login WHERE upper(usuario)= " + usu.toUpperCase() +" AND " + "senha = " + psw + "";
+            ResultSet rs = stmt.executeQuery(sql);
+            // Extract data from result set
+            if (rs.next()) {              
+                response.sendRedirect("menu.html");
             }
-        }
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            //Handle errors for JDBC
+            //throw new ServletException(e);
+            response.sendRedirect("erro.html");           
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            //throw new ServletException(e);
+            resp = e.getMessage();
+            throw new ServletException(e);
+        } finally {
+            System.out.printf(resp);
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException e) {
+                response.sendRedirect("erro.html"); 
+            }// nothing we can do
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                response.sendRedirect("erro.html"); 
+            }//end finally try
+        } //end try
+
     }
 
     @Override
@@ -62,10 +97,4 @@ public class AulaServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
