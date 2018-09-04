@@ -18,48 +18,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "AulaServlet", urlPatterns = {"/AulaServlet"})
-public class AulaServlet extends HttpServlet {
+@WebServlet(name = "ValidaServlet", urlPatterns = {"/ValidaServlet"})
+public class ValidaServlet extends HttpServlet {
 
     String usuario, senha;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
 
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
-        // Pega senha do danco de dados
         String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
         String DB_URL = "jdbc:derby://localhost:1527/usuario";
-        // Database credentials
         Connection conn = null;
         Statement stmt = null;
         String resp = null;
-        // Set response content type
         try {
-            // Register JDBC driver
             Class.forName(JDBC_DRIVER);
-            // Open a connection
             conn = new ConnectionFactory().getConnection();
-            // Execute SQL query
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT usuario,senha FROM login WHERE upper(usuario)= " + usu.toUpperCase() +" AND " + "senha = " + psw + "";
+            sql = "SELECT usuario,senha FROM login WHERE upper(usuario)= " + usu.toUpperCase() + " AND " + "senha = " + psw + "";
             ResultSet rs = stmt.executeQuery(sql);
-            // Extract data from result set
-            if (rs.next()) {              
-                response.sendRedirect("menu.html");
+
+            if (!rs.isBeforeFirst()) {
+                response.sendRedirect("erro.html");
             }
-            
+            response.sendRedirect("menu.html");
+
             rs.close();
             stmt.close();
             conn.close();
         } catch (SQLException e) {
             //Handle errors for JDBC
             //throw new ServletException(e);
-            response.sendRedirect("erro.html");           
+            //response.sendRedirect("erro.html");           
         } catch (Exception e) {
             //Handle errors for Class.forName
             //throw new ServletException(e);
@@ -73,14 +69,14 @@ public class AulaServlet extends HttpServlet {
                     stmt.close();
                 }
             } catch (SQLException e) {
-                response.sendRedirect("erro.html"); 
+                //response.sendRedirect("erro.html"); 
             }// nothing we can do
             try {
                 if (conn != null) {
                     conn.close();
                 }
             } catch (SQLException e) {
-                response.sendRedirect("erro.html"); 
+                //response.sendRedirect("erro.html"); 
             }//end finally try
         } //end try
 
@@ -90,6 +86,7 @@ public class AulaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
     @Override
