@@ -32,7 +32,9 @@ public class ValidaServlet extends HttpServlet {
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
-        String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+        //String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+        String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+        
         String DB_URL = "jdbc:derby://localhost:1527/usuario";
         Connection conn = null;
         PreparedStatement stmt = null;
