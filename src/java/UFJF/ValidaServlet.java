@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,15 +35,14 @@ public class ValidaServlet extends HttpServlet {
         String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
         String DB_URL = "jdbc:derby://localhost:1527/usuario";
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         String resp = null;
         try {
             Class.forName(JDBC_DRIVER);
             conn = new ConnectionFactory().getConnection();
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT usuario,senha FROM login WHERE upper(usuario)= " + usu.toUpperCase() + " AND " + "senha = " + psw + "";
-            ResultSet rs = stmt.executeQuery(sql);
+            stmt = conn.prepareStatement("SELECT usuario,senha FROM login WHERE "
+                    + "upper(usuario)= " + usu.toUpperCase() + " AND " + "senha = " + psw + "");
+            ResultSet rs = stmt.executeQuery();
 
             if (!rs.isBeforeFirst()) {
                 response.sendRedirect("erro.html");
