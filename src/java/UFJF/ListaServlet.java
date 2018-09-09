@@ -16,7 +16,7 @@ public class ListaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-        String DB_URL = "jdbc:derby://localhost:1527/usuario";
+        String DB_URL = "jdbc:derby://localhost:1527/usuarioBD";
         Connection conn = null;
         Statement stmt = null;
         String resp = null;
@@ -44,7 +44,7 @@ public class ListaServlet extends HttpServlet {
             resp = e.getMessage();
             throw new ServletException(e);
         } finally {
-            System.out.printf(resp);
+            //System.out.printf(resp);
             //finally block used to close resources
             try {
                 if (stmt != null) {

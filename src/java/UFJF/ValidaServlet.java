@@ -35,7 +35,7 @@ public class ValidaServlet extends HttpServlet {
 
         String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
 
-        String DB_URL = "jdbc:derby://localhost:1527/usuario";
+        String DB_URL = "jdbc:derby://localhost:1527/usuarioBD";
         Connection conn = null;
         PreparedStatement stmt = null;
         String resp = null;
@@ -47,13 +47,9 @@ public class ValidaServlet extends HttpServlet {
             ResultSet rs = stmt.executeQuery();
             RequestDispatcher rd;
             if (rs.next()) {
-                rd = request.getRequestDispatcher("/menu.html");
-                rd.forward(request, response);
-                //response.sendRedirect(request.getServletContext() + "/erro.html");
-            }else
-            //response.sendRedirect(request.getServletContext() + "/menu.html");
-                rd = request.getRequestDispatcher("/erro.html");
-                rd.forward(request, response);
+                System.out.println("Batata");
+            }
+
 
             rs.close();
             stmt.close();
