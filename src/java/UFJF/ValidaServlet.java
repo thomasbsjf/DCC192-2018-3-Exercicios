@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +33,8 @@ public class ValidaServlet extends HttpServlet {
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
-        //String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-        String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        
+        String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+
         String DB_URL = "jdbc:derby://localhost:1527/usuario";
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -45,11 +45,15 @@ public class ValidaServlet extends HttpServlet {
             stmt = conn.prepareStatement("SELECT usuario,senha FROM login WHERE "
                     + "upper(usuario)= " + usu.toUpperCase() + " AND " + "senha = " + psw + "");
             ResultSet rs = stmt.executeQuery();
-
-            if (!rs.isBeforeFirst()) {
-                response.sendRedirect("erro.html");
-            }
-            response.sendRedirect("menu.html");
+            RequestDispatcher rd;
+            if (rs.next()) {
+                rd = request.getRequestDispatcher("/menu.html");
+                rd.forward(request, response);
+                //response.sendRedirect(request.getServletContext() + "/erro.html");
+            }else
+            //response.sendRedirect(request.getServletContext() + "/menu.html");
+                rd = request.getRequestDispatcher("/erro.html");
+                rd.forward(request, response);
 
             rs.close();
             stmt.close();
@@ -64,7 +68,7 @@ public class ValidaServlet extends HttpServlet {
             resp = e.getMessage();
             throw new ServletException(e);
         } finally {
-            System.out.printf(resp);
+            //System.out.printf(resp);
             //finally block used to close resources
             try {
                 if (stmt != null) {
