@@ -6,14 +6,14 @@
         <title>Tela de Login</title>
     </head>
     <body>
-        <form method="post" role="form" action="ValidaServlet">
+        <form method="post" role="form" action="${pageContext.request.contextPath}/ValidaServlet">
             <div class="row">
                 <div class="form-group col-lg-2">  
                     <label for="usuario_input">Login</label>
                     <input type="text" class="form-control" id="usuario_input" name="usuario"><br>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="form-group col-lg-2">
                     <label for="senha_input">Senha</label>              
@@ -21,7 +21,6 @@
                 </div>
             </div>                       
             <button type="submit" class="btn btn-default">Confirmar</button>
-
         </form>
     </body>
 </html>
