@@ -50,7 +50,6 @@ public class ValidaServlet extends HttpServlet {
                 System.out.println("Batata");
             }
 
-
             rs.close();
             stmt.close();
             conn.close();
