@@ -4,7 +4,6 @@
         <servlet-name>ValidaServlet</servlet-name>
         <servlet-class>UFJF.ValidaServlet</servlet-class>
     </servlet>
-
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
@@ -25,6 +24,4 @@
             30
         </session-timeout>
     </session-config>
-
 </web-app>
-

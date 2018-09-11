@@ -30,6 +30,8 @@ public class ValidaServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
+        //String usu = (String) getServletContext().getInitParameter("usuario");
+        //String psw = (String) getServletContext().getInitParameter("senha");
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
@@ -41,26 +43,35 @@ public class ValidaServlet extends HttpServlet {
         String resp = null;
         try {
             Class.forName(JDBC_DRIVER);
-            conn = new ConnectionFactory().getConnection();
-            stmt = conn.prepareStatement("SELECT usuario,senha FROM login WHERE "
-                    + "upper(usuario)= " + usu.toUpperCase() + " AND " + "senha = " + psw + "");
-            ResultSet rs = stmt.executeQuery();
-            RequestDispatcher rd;
-            if (rs.next()) {
-                System.out.println("Batata");
+            conn = new ConnectionFactory().getConnection();            
+            stmt = conn.prepareStatement("SELECT usuario,senha FROM login WHERE upper(usuario)= ? AND senha = ?");
+            stmt.setString(1, usu.toUpperCase());
+            stmt.setString(2, psw);
+            //TESTE
+            try (ResultSet rs = stmt.executeQuery()) {
+                //TESTE
+                if (rs.next()) {
+                    response.sendRedirect("menu.jsp");
+                }else{
+                    response.sendRedirect("erro.html");
+                }
+            }catch (Exception e){
+                System.out.printf("Problema com o Statement");
             }
-
-            rs.close();
             stmt.close();
             conn.close();
         } catch (SQLException e) {
             //Handle errors for JDBC
             //throw new ServletException(e);
-            //response.sendRedirect("erro.html");           
+            resp = e.getMessage();
+            resp += "SQLException: " + e.getMessage();
+            resp += "SQLState: " + e.getSQLState();
+            resp += "VendorError: " + e.getErrorCode();
+            throw new ServletException(e);
         } catch (Exception e) {
             //Handle errors for Class.forName
             //throw new ServletException(e);
-            resp = e.getMessage();
+            //resp = e.getMessage();
             throw new ServletException(e);
         } finally {
             //System.out.printf(resp);
@@ -70,17 +81,16 @@ public class ValidaServlet extends HttpServlet {
                     stmt.close();
                 }
             } catch (SQLException e) {
-                //response.sendRedirect("erro.html"); 
+                throw new ServletException(e);
             }// nothing we can do
             try {
                 if (conn != null) {
                     conn.close();
                 }
             } catch (SQLException e) {
-                //response.sendRedirect("erro.html"); 
+                throw new ServletException(e);
             }//end finally try
         } //end try
-
     }
 
     @Override
