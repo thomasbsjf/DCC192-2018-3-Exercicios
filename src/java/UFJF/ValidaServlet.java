@@ -36,8 +36,6 @@ public class ValidaServlet extends HttpServlet {
         String psw = request.getParameter("senha");
 
         String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-
-        String DB_URL = "jdbc:derby://localhost:1527/usuarioBD";
         Connection conn = null;
         PreparedStatement stmt = null;
         String resp = null;
