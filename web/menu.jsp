@@ -6,6 +6,13 @@
         <title>Menu Principal</title>
     </head>
     <body>
+        <%
+        String logado = (String) request.getSession().getAttribute("logado");
+
+        if (logado == null) {
+            response.sendRedirect("index.jsp");
+        }
+        %>
         <h1>Menu Principal</h1>
         <a href="ListaServlet">Cadastro de Usuários</a><br>
         <a href="index.jsp">Sair</a>
