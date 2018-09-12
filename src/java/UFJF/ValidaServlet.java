@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ValidaServlet", urlPatterns = {"/ValidaServlet"})
 public class ValidaServlet extends HttpServlet {
@@ -49,6 +50,8 @@ public class ValidaServlet extends HttpServlet {
             try (ResultSet rs = stmt.executeQuery()) {
                 //TESTE
                 if (rs.next()) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("logado", new String("true"));
                     response.sendRedirect("menu.jsp");
                 }else{
                     response.sendRedirect("erro.html");

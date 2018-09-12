@@ -21,54 +21,63 @@ public class ListaServlet extends HttpServlet {
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        String resp = null;
-        try {
-            Class.forName(JDBC_DRIVER);
-            conn = new ConnectionFactory().getConnection();
-            stmt = conn.prepareStatement("SELECT usuario FROM login");
-            ResultSet rs = stmt.executeQuery();
+        String logado = (String) request.getSession().getAttribute("logado");
 
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<h1>Usuários Cadastrados</h1>");
-                while (rs.next()) {
-                    out.println(rs.getString("usuario") + "<br>");
-                }
-                out.println("<a href='menu.jsp'>Voltar</a>");
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            //Handle errors for JDBC
-            //throw new ServletException(e);
-            //response.sendRedirect("erro.html");           
-        } catch (Exception e) {
-            //Handle errors for Class.forName
-            //throw new ServletException(e);
-            resp = e.getMessage();
-            throw new ServletException(e);
-        } finally {
-            //System.out.printf(resp);
-            //finally block used to close resources
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException e) {
-                //response.sendRedirect("erro.html"); 
-            }// nothing we can do
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                //response.sendRedirect("erro.html"); 
-            }//end finally try
-        } //end try
+        if (logado == null) {
+            response.sendRedirect("index.jsp");
+        }
 
-    }
+            Connection conn = null;
+            PreparedStatement stmt = null;
+            String resp = null;
+            try {
+                Class.forName(JDBC_DRIVER);
+                conn = new ConnectionFactory().getConnection();
+                stmt = conn.prepareStatement("SELECT usuario FROM login");
+                ResultSet rs = stmt.executeQuery();
+
+                try (PrintWriter out = response.getWriter()) {
+                    out.println("<title>Usuários Cadastrados</title>");
+                    out.println("<h1>Usuários Cadastrados</h1>");
+                    while (rs.next()) {
+                        out.println(rs.getString("usuario") + "<br>");
+                    }
+                    out.println("<a href='menu.jsp'>Voltar</a>");
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+
+            } catch (SQLException e) {
+                //Handle errors for JDBC
+                //throw new ServletException(e);
+                //response.sendRedirect("erro.html");           
+            } catch (Exception e) {
+                //Handle errors for Class.forName
+                //throw new ServletException(e);
+                resp = e.getMessage();
+                throw new ServletException(e);
+            } finally {
+                //System.out.printf(resp);
+                //finally block used to close resources
+                try {
+                    if (stmt != null) {
+                        stmt.close();
+                    }
+                } catch (SQLException e) {
+                    //response.sendRedirect("erro.html"); 
+                }// nothing we can do
+                try {
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    //response.sendRedirect("erro.html"); 
+                }//end finally try
+            } //end try
+
+        }
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
