@@ -31,8 +31,6 @@ public class ValidaServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        //String usu = (String) getServletContext().getInitParameter("usuario");
-        //String psw = (String) getServletContext().getInitParameter("senha");
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
@@ -46,9 +44,9 @@ public class ValidaServlet extends HttpServlet {
             stmt = conn.prepareStatement("SELECT usuario,senha FROM login WHERE upper(usuario)= ? AND senha = ?");
             stmt.setString(1, usu.toUpperCase());
             stmt.setString(2, psw);
-            //TESTE
+            
             try (ResultSet rs = stmt.executeQuery()) {
-                //TESTE
+                
                 if (rs.next()) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("logado", new String("true"));

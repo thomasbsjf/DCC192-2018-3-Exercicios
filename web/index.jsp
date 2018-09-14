@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="cabecalho.jspf" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,3 +32,4 @@
         </form>
     </body>
 </html>
+<%@include file="rodape.jspf" %>

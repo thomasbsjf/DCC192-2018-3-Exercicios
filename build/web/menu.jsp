@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="cabecalho.jspf" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,3 +19,4 @@
         <a href="index.jsp">Sair</a>
     </body>
 </html>
+<%@include file="rodape.jspf" %>
