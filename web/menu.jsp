@@ -15,8 +15,12 @@
         }
         %>
         <h1>Menu Principal</h1>
-        <a href="ListaServlet">Cadastro de Usuários</a><br>
-        <a href="index.jsp">Sair</a>
+        <a href="ListaServlet">Cadastro de Usuários</a></br>
+        <a href="index.jsp">Sair</a></br>
+        
+        <%
+            out.println("Seu endereço IP: " + request.getRemoteAddr() + "</br>");          
+        %>
     </body>
 </html>
 <%@include file="rodape.jspf" %>
