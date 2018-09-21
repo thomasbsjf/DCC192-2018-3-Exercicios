@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UFJF;
 
 import java.io.IOException;
@@ -40,21 +35,21 @@ public class ValidaServlet extends HttpServlet {
         String resp = null;
         try {
             Class.forName(JDBC_DRIVER);
-            conn = new ConnectionFactory().getConnection();            
+            conn = new ConnectionFactory().getConnection();
             stmt = conn.prepareStatement("SELECT usuario,senha FROM login WHERE upper(usuario)= ? AND senha = ?");
             stmt.setString(1, usu.toUpperCase());
             stmt.setString(2, psw);
-            
+
             try (ResultSet rs = stmt.executeQuery()) {
-                
+
                 if (rs.next()) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("logado", new String("true"));
                     response.sendRedirect("menu.jsp");
-                }else{
+                } else {
                     response.sendRedirect("erro.html");
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.printf("Problema com o Statement");
             }
             stmt.close();

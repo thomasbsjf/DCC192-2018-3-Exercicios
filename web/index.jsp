@@ -11,8 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <%
-            request.getSession().invalidate();
+        <%            request.getSession().invalidate();
         %>
         <form method="post" role="form" action="${pageContext.request.contextPath}/ValidaServlet">
             <div class="row">
