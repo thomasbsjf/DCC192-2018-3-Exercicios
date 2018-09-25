@@ -23,5 +23,8 @@
         <session-timeout>
             1
         </session-timeout>
-    </session-config>
+    </session-config> 
+    <listener>
+        <listener-class>UFJF.SessionListener</listener-class>
+    </listener>
 </web-app>

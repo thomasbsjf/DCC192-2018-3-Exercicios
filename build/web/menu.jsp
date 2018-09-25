@@ -1,3 +1,4 @@
+<%@page import="UFJF.SessionListener"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="cabecalho.jspf" %>
 
@@ -38,6 +39,8 @@
 
         <%
             out.println("</br>" + "Seu endereço IP: " + request.getRemoteAddr() + "</br>");
+            SessionListener sessionListener = new SessionListener();
+            out.println("</br>" + "Usuários Online: " + sessionListener.getTotalActiveSession() + "</br>");
         %>
     </body>
 </html>
