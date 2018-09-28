@@ -11,6 +11,7 @@ public class SessionListener implements HttpSessionListener {
     public SessionListener() {
         super();
         sessoesAtivas = new AtomicInteger();
+ 
     }
     public int getTotalActiveSession() {
         return sessoesAtivas.get();
