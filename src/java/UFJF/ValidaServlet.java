@@ -8,6 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "ValidaServlet", urlPatterns = {"/ValidaServlet"})
+@WebServlet(name = "ValidaServlet", urlPatterns = {"/ValidaServlet", "index.jsp"})
 public class ValidaServlet extends HttpServlet {
 
     String usuario, senha;
@@ -90,7 +94,18 @@ public class ValidaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Map<String, String> rotas = new HashMap<>();
+        rotas.put("/index.jsp", "UFJF.IndexCommand");
+        rotas.put("/lista-usuario", "UFJF.ListaUsuarioCommand");
+
+        String clazzName = rotas.get(request.getServletPath());
+        try {
+            Comando comando = (Comando) Class.forName(clazzName).newInstance();
+            comando.exec(request, response);
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
+            response.sendError(500, "Erro: " + ex);
+            Logger.getLogger(ValidaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

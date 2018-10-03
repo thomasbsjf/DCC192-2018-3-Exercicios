@@ -5,12 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
-public class jpaUsuario implements UsuarioDAO {
+public class jdbcUsuario implements UsuarioDAO {
+
+    private static Connection conexao;
+    private static jdbcUsuario instancia;
 
     @Override
     public Usuario create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null; // MUDAR
+    }
+
+    @Override
+    public UsuarioDAO getInstance() {
+        if(instancia == null){
+        //    instancia = new UsuarioDAO();
+        }
+        return instancia;
     }
 
     @Override
@@ -34,6 +46,11 @@ public class jpaUsuario implements UsuarioDAO {
         } catch (SQLException e) {
 
         }
+        return null;
+    }
+
+    @Override
+    public List<Usuario> listaUsuarios() {
         return null;
     }
 
