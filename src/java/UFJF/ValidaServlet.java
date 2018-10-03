@@ -40,7 +40,7 @@ public class ValidaServlet extends HttpServlet {
         try {
             Class.forName(JDBC_DRIVER);
             conn = new ConnectionFactory().getConnection();
-            stmt = conn.prepareStatement("SELECT usuario,senha FROM login WHERE upper(usuario)= ? AND senha = ?");
+            stmt = conn.prepareStatement("SELECT login,senha FROM login WHERE upper(login)= ? AND senha = ?");
             stmt.setString(1, usu.toUpperCase());
             stmt.setString(2, psw);
 
@@ -96,7 +96,7 @@ public class ValidaServlet extends HttpServlet {
             throws ServletException, IOException {
         Map<String, String> rotas = new HashMap<>();
         rotas.put("/index.jsp", "UFJF.IndexCommand");
-        rotas.put("/lista-usuario", "UFJF.ListaUsuarioCommand");
+        rotas.put("/lista-usuario.jsp", "UFJF.ListarUsuarioCommand");
 
         String clazzName = rotas.get(request.getServletPath());
         try {

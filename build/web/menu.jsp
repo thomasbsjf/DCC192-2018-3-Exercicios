@@ -34,7 +34,7 @@
             </a>
         </p>
 
-        <a href="ListaServlet" class="btn btn-secondary btn-sm" >Cadastro de Usuários</a>
+        <a href="lista-usuario.jsp" class="btn btn-secondary btn-sm" >Cadastro de Usuários</a>
         <a href="index.jsp" class="btn btn-secondary btn-sm">Sair</a>
 
         <%

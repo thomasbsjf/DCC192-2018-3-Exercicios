@@ -41,11 +41,11 @@ public class jdbcUsuario implements UsuarioDAO {
         try {
             //Class.forName(JDBC_DRIVER);
             conn = new ConnectionFactory().getConnection();
-            stmt = conn.prepareStatement("SELECT usuario FROM login");
+            stmt = conn.prepareStatement("SELECT login FROM login");
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setNome(rs.getString("usuario"));
+                usuario.setNome(rs.getString("login"));
                 usuario.setSenha(rs.getString("senha"));
                 return usuario;
             } else {
@@ -62,11 +62,11 @@ public class jdbcUsuario implements UsuarioDAO {
     public List<Usuario> listAllUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
         try {
-            PreparedStatement comando = conexao.prepareStatement("SELECT usuario FROM login");
+            PreparedStatement comando = conexao.prepareStatement("SELECT login FROM login");
             ResultSet rs = comando.executeQuery();
             if (rs.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setNome(rs.getString("usuario"));
+                usuario.setNome(rs.getString("login"));
                 usuarios.add(usuario);
             }
             rs.close();
