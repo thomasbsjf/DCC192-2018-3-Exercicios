@@ -6,22 +6,20 @@ import javax.servlet.http.HttpSessionListener;
  
 public class SessionListener implements HttpSessionListener {
  
-    private final AtomicInteger sessoesAtivas;
+    private static int sessoesAtivas;
  
     public SessionListener() {
         super();
-        sessoesAtivas = new AtomicInteger();
- 
     }
     public int getTotalActiveSession() {
-        return sessoesAtivas.get();
+        return sessoesAtivas;
     }
     @Override
     public void sessionCreated(final HttpSessionEvent event) {
-        sessoesAtivas.incrementAndGet();
+        sessoesAtivas += 1;
     }
     @Override
     public void sessionDestroyed(final HttpSessionEvent event) {
-        sessoesAtivas.decrementAndGet();
+        sessoesAtivas -= 1;
     }
 }

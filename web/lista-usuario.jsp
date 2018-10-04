@@ -10,7 +10,7 @@
     <body>
         <h1>Usuários Cadastrados</h1>        
         <c:forEach var="usuario" items="${usuarios}">      
-            <p>${usuario.nome}</p>       
+            <p>${usuario.nome}</p>
         </c:forEach>
 
         <a href="menu.jsp">Voltar</a>

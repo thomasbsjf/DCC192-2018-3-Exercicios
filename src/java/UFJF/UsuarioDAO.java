@@ -6,5 +6,6 @@ public interface UsuarioDAO {
     
     public Usuario findByUsuarioNome(String nome);
     public List<Usuario> listAllUsuarios();
+    public boolean validaLogin(String nome, String senha);
     
 }

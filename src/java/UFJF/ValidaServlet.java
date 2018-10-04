@@ -33,64 +33,15 @@ public class ValidaServlet extends HttpServlet {
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
-        String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        String resp = null;
-        try {
-            Class.forName(JDBC_DRIVER);
-            conn = new ConnectionFactory().getConnection();
-            stmt = conn.prepareStatement("SELECT login,senha FROM login WHERE upper(login)= ? AND senha = ?");
-            stmt.setString(1, usu.toUpperCase());
-            stmt.setString(2, psw);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-
-                if (rs.next()) {
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("logado", new String("true"));
-                    response.sendRedirect("menu.jsp");
-                } else {
-                    response.sendRedirect("erro.html");
-                }
-            } catch (Exception e) {
-                System.out.printf("Problema com o Statement");
-            }
-            stmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            //Handle errors for JDBC
-            //throw new ServletException(e);
-            resp = e.getMessage();
-            resp += "SQLException: " + e.getMessage();
-            resp += "SQLState: " + e.getSQLState();
-            resp += "VendorError: " + e.getErrorCode();
-            throw new ServletException(e);
-        } catch (Exception e) {
-            //Handle errors for Class.forName
-            //throw new ServletException(e);
-            //resp = e.getMessage();
-            throw new ServletException(e);
-        } finally {
-            //System.out.printf(resp);
-            //finally block used to close resources
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException e) {
-                throw new ServletException(e);
-            }// nothing we can do
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                throw new ServletException(e);
-            }//end finally try
-        } //end try
+        jdbcUsuario jdbcUser = new jdbcUsuario();
+        if (jdbcUser.validaLogin(usu, psw)) {
+            HttpSession session = request.getSession(true);
+            session.setAttribute("logado", new String("true"));
+            response.sendRedirect("menu.jsp");
+        } else {
+            response.sendRedirect("erro.html");
+        }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
