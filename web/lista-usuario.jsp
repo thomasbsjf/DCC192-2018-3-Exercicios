@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>Usuários Cadastrados</h1>        
-        <c:forEach var="usuario" items="${usuarios}">      
+        <c:forEach var="usuario" items="${usuarios.nome}">      
             <p>${usuario.nome}</p>
         </c:forEach>
 

@@ -6,6 +6,9 @@
 <%
     String dataAtual = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 %>
-<h2>DCC192 - Laboratório WEB II - <%=dataAtual%></h2>
+<div class="jumbotron text-center">
+  <h2>DCC192 - Laboratório WEB II - <%=dataAtual%></h2>
+</div>
+
 <hr/>
 
