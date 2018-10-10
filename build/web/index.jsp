@@ -27,7 +27,7 @@
                     <input type="password" class="form-control input normal" id="senha_input" name="senha">
                 </div>
             </div>                       
-            <button type="submit" class="btn btn-default">Confirmar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
         </form>
     </body>
 </html>

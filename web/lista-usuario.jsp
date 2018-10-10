@@ -11,8 +11,8 @@
         <h1>Usuários Cadastrados</h1>        
         <c:forEach var="usuario" items="${usuarios.nome}">      
             <p>${usuario.nome}</p>
-        </c:forEach>
-
-        <a href="menu.jsp">Voltar</a>
+        </c:forEach>   
+            
+        <a href="menu.jsp" class="btn btn-primary" role="button">Voltar</a>     
     </body>
 </html>

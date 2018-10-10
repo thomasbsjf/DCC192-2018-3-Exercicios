@@ -30,12 +30,11 @@
                              property = "link" />">
 
                 <img src = "<jsp:getProperty name = "rotator"
-                                 property = "image" />" alt = "advertisement" />
+                                 property = "image" />" class="img-responsive" alt = "Chania" />
             </a>
         </p>
-
-        <a href="lista-usuario.jsp" class="btn btn-secondary btn-sm" >Cadastro de Usuários</a>
-        <a href="index.jsp" class="btn btn-secondary btn-sm">Sair</a>
+        <a href="lista-usuario.jsp" class="btn btn-primary" role="button">Cadastro de Usuários</a>        
+        <a href="index.jsp" class="btn btn-primary" role="button">Sair</a>
 
         <%
             out.println("</br>" + "Seu endereço IP: " + request.getRemoteAddr() + "</br>");
