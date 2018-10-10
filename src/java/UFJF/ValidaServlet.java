@@ -24,6 +24,9 @@ import javax.servlet.http.HttpSession;
 public class ValidaServlet extends HttpServlet {
 
     String usuario, senha;
+    String dbUser = (String) getServletContext().getInitParameter("dbUser");
+    String dbPSW = (String) getServletContext().getInitParameter("dbPassword");
+    String dbURL = (String) getServletContext().getInitParameter("dbURL");
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,6 +45,7 @@ public class ValidaServlet extends HttpServlet {
             response.sendRedirect("erro.html");
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
