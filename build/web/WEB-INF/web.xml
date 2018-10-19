@@ -41,6 +41,14 @@
         <filter-name>acesso</filter-name>
         <filter-class>sessaoFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>MainFiltro</filter-name>
+        <filter-class>UFJF.MainFiltro</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MainFiltro</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <listener>
         <listener-class>UFJF.SessionListener</listener-class>
     </listener>

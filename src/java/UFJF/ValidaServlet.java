@@ -45,6 +45,10 @@ public class ValidaServlet extends HttpServlet {
             response.sendRedirect("erro.html");
         }
     }
+    @Override
+    public void init(){
+        
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

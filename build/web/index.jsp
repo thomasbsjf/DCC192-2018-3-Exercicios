@@ -26,7 +26,8 @@
                     <label for="senha_input">Senha</label>              
                     <input type="password" class="form-control input normal" id="senha_input" name="senha">
                 </div>
-            </div>                       
+            </div>
+            <button type="hidden" class="btn btn-success" name="opcao" value="login"></button>
             <button type="submit" class="btn btn-success">Confirmar</button>
         </form>
     </body>
