@@ -70,8 +70,7 @@ public class MainFiltro implements Filter {
             req.getSession();
             if(req==null){
                 desvio = "login.jsp";
-            }
-            
+            }           
         }
     }
 

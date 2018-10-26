@@ -46,8 +46,8 @@ public class ValidaServlet extends HttpServlet {
         }
     }
     @Override
-    public void init(){
-        
+    public void init() throws ServletException{
+        super.init();
     }
 
     @Override
