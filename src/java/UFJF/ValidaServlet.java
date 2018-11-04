@@ -23,6 +23,11 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "ValidaServlet", urlPatterns = {"/ValidaServlet", "index.jsp"})
 public class ValidaServlet extends HttpServlet {
 
+    String usuario, senha;
+    String dbUser = (String) getServletContext().getInitParameter("dbUser");
+    String dbPSW = (String) getServletContext().getInitParameter("dbPassword");
+    String dbURL = (String) getServletContext().getInitParameter("dbURL");
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -39,10 +44,6 @@ public class ValidaServlet extends HttpServlet {
         } else {
             response.sendRedirect("erro.html");
         }
-    }
-    @Override
-    public void init() throws ServletException{
-        super.init();
     }
 
     @Override
