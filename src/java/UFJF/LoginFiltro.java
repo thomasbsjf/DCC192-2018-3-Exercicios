@@ -19,10 +19,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author ice
- */
+
 @WebFilter(filterName = "LoginFiltro", urlPatterns = {"/*"})
 public class LoginFiltro implements Filter {
 
@@ -65,14 +62,14 @@ public class LoginFiltro implements Filter {
          */
         opcao = request.getParameter("opcao");
         if (opcao != null && opcao.equals("login")) {
-
+            log("Usuário tentando login");
         } else {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
 
             if (req.getSession() == null) {
+                log("Usuário com sessão inválida");
                 res.sendRedirect("index.jsp");
-
             }
         }
     }

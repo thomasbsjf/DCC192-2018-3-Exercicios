@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "ValidaServlet", urlPatterns = {"/ValidaServlet", "index.jsp"})
+@WebServlet(name = "ValidaServlet", urlPatterns = {"ValidaServlet", "index.jsp"})
 public class ValidaServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -28,27 +28,40 @@ public class ValidaServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
+        String opcao = request.getParameter("opcao");
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
-        jdbcUsuario jdbcUser = new jdbcUsuario();
-        if (jdbcUser.validaLogin(usu, psw)) {
-            HttpSession session = request.getSession(true);
-            session.setAttribute("logado", new String("true"));
-            response.sendRedirect("menu.jsp");
-        } else {
-            response.sendRedirect("erro.html");
+        switch (opcao) {
+            case "login":
+                jdbcUsuario jdbcUser = new jdbcUsuario();
+                if (jdbcUser.validaLogin(usu, psw)) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("logado", new String("true"));
+                    response.sendRedirect("menu.jsp");
+                } else {
+                    response.sendRedirect("erro.html");
+                }
+                break;
+                
+            case "listaUsuario":
+                response.sendRedirect("lista-usuario.jsp");
+                break;
+                
+            default:
+                response.sendRedirect("erro.html");
         }
     }
+
     @Override
-    public void init() throws ServletException{
+    public void init() throws ServletException {
         super.init();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Map<String, String> rotas = new HashMap<>();
+        /*Map<String, String> rotas = new HashMap<>();
         rotas.put("/index.jsp", "UFJF.IndexCommand");
         rotas.put("/lista-usuario.jsp", "UFJF.ListarUsuarioCommand");
 
@@ -60,7 +73,7 @@ public class ValidaServlet extends HttpServlet {
             response.sendError(500, "Erro: " + ex);
             Logger.getLogger(ValidaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        */
     }
 
     @Override

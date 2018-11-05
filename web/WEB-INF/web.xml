@@ -38,8 +38,8 @@
     </session-config>
     <filter>
         <description>Gerenciamento de Sessão</description>
-        <filter-name>acesso</filter-name>
-        <filter-class>sessaoFilter</filter-class>
+        <filter-name>LoginFiltro</filter-name>
+        <filter-class>UFJF.LoginFiltro</filter-class>
     </filter>
     <listener>
         <listener-class>UFJF.SessionListener</listener-class>

@@ -28,7 +28,7 @@ public class jdbcUsuario implements UsuarioDAO {
     public jdbcUsuario() {
         try {
             if (conexao == null) {
-                conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/usuarioBD", "root", "senha");
+                conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/usuarioDB", "root", "senha");
             }
 
         } catch (SQLException ex) {

@@ -9,7 +9,7 @@ public class ConnectionFactory {
     public Connection getConnection() {
         try {
             return DriverManager.getConnection(
-                    "jdbc:derby://localhost:1527/usuarioBD", "root", "senha");
+                    "jdbc:derby://localhost:1527/usuarioDB", "root", "senha");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

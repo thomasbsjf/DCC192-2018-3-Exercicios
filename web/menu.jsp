@@ -33,7 +33,7 @@
                                  property = "image" />" class="img-responsive" alt = "Chania" />
             </a>
         </p>
-        <a href="lista-usuario.jsp" class="btn btn-primary" role="button">Cadastro de Usuários</a>        
+        <a href="ValidaServlet" class="btn btn-primary" name="opcao" value="listaUsuario" role="button">Cadastro de Usuários</a>        
         <a href="index.jsp" class="btn btn-primary" role="button">Sair</a>
 
         <%
