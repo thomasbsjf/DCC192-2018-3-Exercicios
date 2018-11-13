@@ -29,51 +29,27 @@ public class ValidaServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String opcao = request.getParameter("opcao");
-        String usu = request.getParameter("usuario");
-        String psw = request.getParameter("senha");
 
         switch (opcao) {
             case "login":
-                jdbcUsuario jdbcUser = new jdbcUsuario();
-                if (jdbcUser.validaLogin(usu, psw)) {
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("logado", new String("true"));
-                    response.sendRedirect("menu.jsp");
-                } else {
-                    response.sendRedirect("erro.html");
-                }
+                IndexCommand index = new IndexCommand();
+                index.exec(request, response);
                 break;
-                
-            case "listaUsuario":
-                response.sendRedirect("lista-usuario.jsp");
+
+            case "listar":
+                ListarUsuarioCommand listaUsuario = new ListarUsuarioCommand();
+                listaUsuario.exec(request, response);
                 break;
-                
+
             default:
                 response.sendRedirect("erro.html");
         }
     }
 
     @Override
-    public void init() throws ServletException {
-        super.init();
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*Map<String, String> rotas = new HashMap<>();
-        rotas.put("/index.jsp", "UFJF.IndexCommand");
-        rotas.put("/lista-usuario.jsp", "UFJF.ListarUsuarioCommand");
-
-        String clazzName = rotas.get(request.getServletPath());
-        try {
-            Comando comando = (Comando) Class.forName(clazzName).newInstance();
-            comando.exec(request, response);
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
-            response.sendError(500, "Erro: " + ex);
-            Logger.getLogger(ValidaServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
+        processRequest(request, response);
     }
 
     @Override

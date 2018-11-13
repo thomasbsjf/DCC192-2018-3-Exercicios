@@ -1,13 +1,20 @@
 <%@page import="java.io.PrintWriter"%>
-<%@ page pageEncoding="UTF-8" %>
+<%@page import="UFJF.SessionListener"%>
 <%@ page import="java.util.*" %>
 <%@ page import="java.text.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <%
     String dataAtual = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 %>
 <div class="jumbotron text-center">
-  <h1>DCC192 - Laboratório WEB II - <%=dataAtual%></h1>
+    <h1>DCC192 - Laboratório WEB II - <%=dataAtual%></h1>
 </div>
 
 <hr/>

@@ -61,22 +61,19 @@ public class jdbcUsuario implements UsuarioDAO {
     }
 
     @Override
-    public List<Usuario> listAllUsuarios() {
+    public List<Usuario> listAllUsuarios() throws Exception {
         List<Usuario> usuarios = new ArrayList<>();
-        try {
-            PreparedStatement comando = conexao.prepareStatement("SELECT login FROM login");
-            ResultSet rs = comando.executeQuery();
-            if (rs.next()) {
-                Usuario usuario = new Usuario();
-                usuario.setNome(rs.getString("login"));
-                usuarios.add(usuario);
-            }
-            rs.close();
-            comando.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(jdbcUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        PreparedStatement comando = conexao.prepareStatement("SELECT login FROM login");
+        ResultSet rs = comando.executeQuery();
+        while (rs.next()) {
+            Usuario usuario = new Usuario();
+            usuario.setNome(rs.getString("login"));
+            usuarios.add(usuario);
         }
-        return null;
+        rs.close();
+        comando.close();
+
+        return usuarios;
     }
 
     @Override

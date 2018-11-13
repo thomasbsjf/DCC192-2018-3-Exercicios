@@ -1,5 +1,3 @@
-<%@page import="UFJF.SessionListener"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="cabecalho.jspf" %>
 
 <jsp:useBean id = "rotator" scope = "session"      
@@ -9,9 +7,7 @@
 <html>
     <head>
         <meta http-equiv="refresh" content="15">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         <title>Menu Principal</title>
         <% rotator.nextAd(); %>
     </head>
@@ -33,13 +29,15 @@
                                  property = "image" />" class="img-responsive" alt = "Chania" />
             </a>
         </p>
-        <a href="ValidaServlet" class="btn btn-primary" name="opcao" value="listaUsuario" role="button">Cadastro de Usu√°rios</a>        
+        <form>
+            <button name="opcao" class="btn btn-success" value="listar" formaction="ValidaServlet">Listar Usu·rios</button>
+        </form>      
         <a href="index.jsp" class="btn btn-primary" role="button">Sair</a>
 
         <%
-            out.println("</br>" + "Seu endere√ßo IP: " + request.getRemoteAddr() + "</br>");
+            out.println("</br>" + "Seu endereÁo IP: " + request.getRemoteAddr() + "</br>");
             SessionListener sessionListener = new SessionListener();
-            out.println("</br>" + "Usu√°rios Online: " + sessionListener.getTotalActiveSession() + "</br>");
+            out.println("</br>" + "Usu·rios Online: " + sessionListener.getTotalActiveSession() + "</br>");
         %>
     </body>
 </html>

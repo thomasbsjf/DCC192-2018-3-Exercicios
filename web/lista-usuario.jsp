@@ -1,15 +1,13 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="cabecalho.jspf" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Usu√°rios Cadastrados</title>
+        <title>Usu·rios Cadastrados</title>
     </head>
     <body>
-        <h1>Usu√°rios Cadastrados</h1>        
-        <c:forEach var="usuario" items="${usuarios.nome}">      
+        <h1>Usu·rios Cadastrados</h1>        
+        <c:forEach var="usuario" items="${usuarios}">      
             <p>${usuario.nome}</p>
         </c:forEach>   
             

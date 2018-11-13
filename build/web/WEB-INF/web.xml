@@ -41,6 +41,10 @@
         <filter-name>LoginFiltro</filter-name>
         <filter-class>UFJF.LoginFiltro</filter-class>
     </filter>
+    <filter-mapping>
+        <filter-name>LoginFiltro</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <listener>
         <listener-class>UFJF.SessionListener</listener-class>
     </listener>
