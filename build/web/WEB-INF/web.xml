@@ -19,17 +19,9 @@
         <param-name>dbURL</param-name>
         <param-value>jdbc:derby://localhost:1527/usuarioBD</param-value>
     </context-param>
-    <servlet>
-        <servlet-name>ListaServlet</servlet-name>
-        <servlet-class>UFJF.ListaServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ValidaServlet</servlet-name>
         <url-pattern>/ValidaServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListaServlet</servlet-name>
-        <url-pattern>/ListaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
