@@ -173,5 +173,10 @@ public class LoginJpaController implements Serializable {
             em.close();
         }
     }
+    //Usar para pegar a lista
+    public List<Login> findAll(){
+        EntityManager em = getEntityManager();
+         return em.createNamedQuery("Login.findAll").getResultList();
+    }
     
 }

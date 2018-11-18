@@ -8,7 +8,7 @@
     <body>
         <h1>Usuários Cadastrados</h1>        
         <c:forEach var="usuario" items="${usuarios}">      
-            <p>${usuario.nome}</p>
+            <p>${usuario.login}</p>
         </c:forEach>   
             
         <a href="menu.jsp" class="btn btn-primary" role="button">Voltar</a>     

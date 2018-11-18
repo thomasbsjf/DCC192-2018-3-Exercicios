@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/java/UFJF/Usuario.java</file>
-            <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/web/menu.jsp</file>
+            <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/java/UFJF/ListarUsuarioCommand.java</file>
+            <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/java/Modelo/LoginJpaController.java</file>
             <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/java/UFJF/IndexCommand.java</file>
-            <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/java/Model/LoginJpaController.java</file>
+            <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/java/Modelo/Login.java</file>
             <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/java/UFJF/LoginFiltro.java</file>
             <file>file:/C:/Users/thoma/Documents/GitHub/TRB2DCC192/DCC192-2018-3-Exercicios/src/java/UFJF/ValidaServlet.java</file>
         </group>
