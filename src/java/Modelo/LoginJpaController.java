@@ -21,12 +21,6 @@ import javax.transaction.UserTransaction;
 
 public class LoginJpaController implements Serializable {
 
-    /*
-    public LoginJpaController(UserTransaction utx, EntityManagerFactory emf) {
-        this.utx = utx;
-        this.emf = emf;
-    }
-    */
     private UserTransaction utx = null;
     
     @PersistenceUnit (unitName = "ExerciciosPU")
@@ -40,8 +34,7 @@ public class LoginJpaController implements Serializable {
     }
 
         private void setUserTransaction() throws NamingException{
-        Context context = new InitialContext();
-        
+        Context context = new InitialContext();      
         
         if(utx == null){
             utx = (UserTransaction) context.lookup ("java:app/usuarioDB");

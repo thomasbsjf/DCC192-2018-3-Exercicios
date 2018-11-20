@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UFJF;
 
 import java.io.IOException;
@@ -30,7 +25,6 @@ public class LoginFiltro implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     String opcao;
-    
 
     public LoginFiltro() {
     }
@@ -57,17 +51,19 @@ public class LoginFiltro implements Filter {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
             HttpSession session = req.getSession(false);
+            String loginURI = req.getContextPath() + "/";
+            String validaURI = req.getContextPath() + "/ValidaServlet";
+            boolean loggedIn = session != null && session.getAttribute("user") != null;
+            String loginReqString = req.getRequestURI();
+            boolean loginRequest = req.getRequestURI().equals(loginURI);
+            boolean validaRequest = req.getRequestURI().equals(validaURI);
 
-            opcao = request.getParameter("opcao");
-            if (opcao != null && opcao.equals("login")) {
-                log("Usuário tentando login");
+            if (loggedIn || loginRequest || validaRequest) {
+                chain.doFilter(request, response);
+            } else {
+                res.sendRedirect(req.getContextPath());
             }
-            
-            //else if (session == null) {
-            //    res.sendRedirect("index.jsp");
-            //}
 
-            chain.doFilter(request, response);
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then

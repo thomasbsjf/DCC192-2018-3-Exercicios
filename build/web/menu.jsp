@@ -13,11 +13,12 @@
     </head>
     <body>
         <%
-            String logado = (String) request.getSession().getAttribute("logado");
+            //String logado = (String) request.getSession().getAttribute("logado");
+            //session.setAttribute("logado", new String("true"));
 
-            if (logado == null) {
-                response.sendRedirect("index.jsp");
-            }
+            //if (logado == null) {
+            //    response.sendRedirect("index.jsp");
+            //}
         %>
         <h1>Menu Principal</h1>
 

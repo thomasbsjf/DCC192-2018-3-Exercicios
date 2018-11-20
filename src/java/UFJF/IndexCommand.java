@@ -16,7 +16,7 @@ public class IndexCommand implements Comando {
         String usu = request.getParameter("usuario");
         String psw = request.getParameter("senha");
 
-        /* JDBC LOGIN
+        /*---------------JDBC LOGIN--------------------
         jdbcUsuario jdbcUser = new jdbcUsuario();
         if (jdbcUser.validaLogin(usu, psw)) {
             HttpSession session = request.getSession(true);
@@ -27,25 +27,15 @@ public class IndexCommand implements Comando {
         }
          */
  /*
-        LoginJpaController jpaControl = new LoginJpaController();
-        List<Login> usuarios = jpaControl.findLoginEntities();
-        for (Login usuario : usuarios) {
-            if (usuario.getLogin().equals(usu) && usuario.getSenha().equals(psw)) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("logado", new String("true"));
-                response.sendRedirect("menu.jsp");
-                return;
-            } else {
-                response.sendRedirect("erro.html");
-                return;
-            }
-        }
+
          */
         LoginJpaController jpaControl = new LoginJpaController();
         if (jpaControl.findLogin(usu) != null) {
-            HttpSession session = request.getSession(true);
-            session.setAttribute("logado", new String("true"));
+            //HttpSession session = request.getSession(true);
+            //session.setAttribute("logado", new String("true"));
+            request.getSession().setAttribute("user", usu);
             response.sendRedirect("menu.jsp");
+            return;
         } else {
             response.sendRedirect("erro.html");
         }

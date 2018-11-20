@@ -41,7 +41,6 @@ public class jdbcUsuario implements UsuarioDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
-            //Class.forName(JDBC_DRIVER);
             conn = new ConnectionFactory().getConnection();
             stmt = conn.prepareStatement("SELECT login FROM login");
             ResultSet rs = stmt.executeQuery();

@@ -15,10 +15,11 @@ public class ListarUsuarioCommand implements Comando {
 
     @Override
     public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
         List<Login> usuarios;
+        LoginJpaController jpaControl = new LoginJpaController();
         /*
-        try {
+        try { ----------------- JDBC LISTAR --------------------
             usuarios = jdbcUsuario.getInstance().listAllUsuarios();
             request.setAttribute("usuarios", usuarios);
             RequestDispatcher dispacher = request.getRequestDispatcher("/lista-usuario.jsp");
@@ -26,9 +27,7 @@ public class ListarUsuarioCommand implements Comando {
         } catch (Exception ex) {
             Logger.getLogger(ListarUsuarioCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
-        
-        LoginJpaController jpaControl = new LoginJpaController();      
+         */
         try {
             usuarios = jpaControl.findAll();
             request.setAttribute("usuarios", usuarios);
